@@ -96,10 +96,7 @@ const Navbar: React.FC = () => (
         <MenuItemLink to="/Projects/">All Projects</MenuItemLink>
         <SubMenu>
           <SubMenuItem>
-            <MenuItemLink to="/Projects/Dawah">Da'wah</MenuItemLink>
-          </SubMenuItem>
-          <SubMenuItem>
-            <MenuItemLink to="/Projects/Dawah">Health Care</MenuItemLink>
+            <MenuItemLink to="/Projects/HealthCare">Health Care</MenuItemLink>
           </SubMenuItem>
           <SubMenuItem>
             <MenuItemLink to="/Projects/Water">Access to Water</MenuItemLink>
@@ -119,7 +116,7 @@ const Navbar: React.FC = () => (
         </SubMenu>
       </MenuItem>
       <MenuItem>
-        <MenuItemLink to="/Current-Projects">Current Projects</MenuItemLink>
+        <MenuItemLink to="/CurrentProjects">Current Projects</MenuItemLink>
       </MenuItem>
       <MenuItem>
         <MenuItemLink to="/Highlights">Highlights</MenuItemLink>

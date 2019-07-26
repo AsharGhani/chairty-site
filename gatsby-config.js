@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     title: "IBAD UR RAHMAN",
     description: "Serving humanity by giving back to life",
-    keywords: "charity, humanity, clean, water, poverty, alleviation, da'wah, daawah, daawa, dawa, health care",
+    keywords: "charity, humanity, clean, water, poverty, alleviation, education, food, health care",
     siteUrl: "https://asharghani.github.io/chairty-site/",
     author: {
       name: "Ashar Ghani",
