@@ -1,7 +1,6 @@
 import * as React from "react";
 import Img from "gatsby-image";
 import { graphql, StaticQuery } from "gatsby";
-import { css } from "@emotion/core";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
