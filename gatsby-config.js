@@ -12,7 +12,7 @@ module.exports = {
       email: "ashar.ghani@outlook.com",
     },
   },
-  pathPrefix: "/charity-site",
+  pathPrefix: "/chairty-site",
   plugins: [
     {
       resolve: "gatsby-source-filesystem",
