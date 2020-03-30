@@ -1,11 +1,18 @@
 import * as React from "react";
 import styled from "@emotion/styled";
-import { css } from "@emotion/core";
-
-import giveUrl from "../content/images/heart-in-hands.svg";
+import { StaticQuery, graphql } from "gatsby";
+import Img from "gatsby-image";
 import { themeLight, heights } from "../styles/variables";
 
 const colorTheme = themeLight;
+
+interface StaticQueryProps {
+  file: {
+    childImageSharp: {
+      fluid: any;
+    };
+  };
+}
 
 const StyledHeaderImageContainer = styled.div`
   line-height: ${heights.header};
@@ -19,6 +26,7 @@ const StyledHeaderImageContainer = styled.div`
   &:hover,
   &:focus {
     box-shadow: 0 0 20px 10px ${colorTheme.background2};
+    width: ${heights.header + 25}px;
   }
 `;
 
@@ -37,19 +45,26 @@ const StyledHeaderImageContents = styled.div`
 `;
 
 const HeaderImage: React.FC = () => (
-  <StyledHeaderImageContainer>
-    <StyledHeaderImageContents>
-      <img
-        src={giveUrl}
-        alt="header image"
-        height={heights.header * 0.8}
-        css={css`
-          padding-left: 5px;
-        `}
-      />
-      ;
-    </StyledHeaderImageContents>
-  </StyledHeaderImageContainer>
+  <StaticQuery
+    query={graphql`
+      query headerImage {
+        file(relativePath: { eq: "images/logo.png" }) {
+          childImageSharp {
+            fluid(maxWidth: 180) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+      }
+    `}
+    render={(data: StaticQueryProps) => (
+      <StyledHeaderImageContainer>
+        <StyledHeaderImageContents>
+          <Img fluid={data.file.childImageSharp.fluid} alt="header image" style={{ width: "100%" }} />
+        </StyledHeaderImageContents>
+      </StyledHeaderImageContainer>
+    )}
+  />
 );
 
 export default HeaderImage;

@@ -2,7 +2,7 @@
 
 module.exports = {
   siteMetadata: {
-    title: "IBAD UR RAHMAN",
+    title: "Ibad - Ur - Rahman",
     description: "Serving humanity by giving back to life",
     keywords: "charity, humanity, clean, water, poverty, alleviation, education, food, health care",
     siteUrl: "https://asharghani.github.io/chairty-site/",

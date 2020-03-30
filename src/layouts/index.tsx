@@ -41,7 +41,7 @@ const IndexLayout: React.FC = ({ children }) => (
             { name: "keywords", content: data.site.siteMetadata.keywords },
           ]}
         />
-        <Header title={data.site.siteMetadata.title} secondaryTitle={data.site.siteMetadata.description} />
+        <Header title={data.site.siteMetadata.title} secondaryTitle="" />
         <LayoutMain>{children}</LayoutMain>
       </LayoutRoot>
     )}

@@ -1,36 +1,40 @@
 import * as React from "react";
-import styled, { StyledComponent } from "@emotion/styled";
+import styled from "@emotion/styled";
 import { transparentize } from "polished";
 import { Link } from "gatsby";
 
-import { heights, dimensions, colors, themeLight } from "../styles/variables";
+import { heights, dimensions, colors, themeLight, breakpoints } from "../styles/variables";
 import Container from "./Container";
 import HeaderImage from "./HeaderImage";
 import Navbar from "./Navbar";
+import { getEmSize } from "../styles/mixins";
 
 const colorTheme = themeLight;
 
 const StyledHeader = styled.header`
-  height: ${heights.header}px;
   padding: 0 ${dimensions.containerPadding}rem;
-  background-image: linear-gradient(45deg, ${colorTheme.headerBackground1} 0%, ${colorTheme.headerBackground2} 100%);
   color: ${transparentize(0.5, colors.white)};
 `;
 
 const HeaderInner = styled(Container)`
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   height: 100%;
+  margin-top: 10px;
+  flex-wrap: wrap;
 `;
 
 const HomepageLink = styled(Link)`
   color: ${colorTheme.headerText};
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: ${dimensions.headingSizes.h1}rem;
   display: flex;
   flex-direction: row;
   align-items: center;
+  font-family: "Rage Italic", "Lucida Bright", serif;
+  font-weight: 500;
+  padding-right: 1rem;
   &:hover,
   &:focus {
     text-decoration: none;
@@ -38,16 +42,15 @@ const HomepageLink = styled(Link)`
 `;
 
 const NavBarContainer = styled(Container)`
-  padding: 0 ${dimensions.containerPadding}rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  z-index: 9999;
 `;
 
 const SecondaryTitleContainer = styled.div`
   font-style: italic;
   font-size: ${dimensions.headingSizes.h3};
-  padding-left: 1rem;
 `;
 
 interface HeaderProps {
@@ -64,12 +67,11 @@ const Header: React.FC<HeaderProps> = ({ title, secondaryTitle }) => (
           {title}
         </HomepageLink>
         <SecondaryTitleContainer>{secondaryTitle}</SecondaryTitleContainer>
+        <NavBarContainer>
+          <Navbar></Navbar>
+        </NavBarContainer>
       </HeaderInner>
     </StyledHeader>
-
-    <NavBarContainer>
-      <Navbar></Navbar>
-    </NavBarContainer>
   </>
 );
 

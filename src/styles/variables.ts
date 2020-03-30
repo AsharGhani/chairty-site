@@ -5,6 +5,7 @@ export const colors = {
   accent: "#ffb238",
   success: "#37b635",
   warning: "#ec1818",
+  lighterGrayWarm: "#fdfdfa",
   lightGrayWarm: "#fafaf0",
   slateBlue: "#335fc6",
   slateGreen: "#00be78",
@@ -18,6 +19,7 @@ export const colors = {
     dark: "hsla(270, 17.119554496%, 0%, 0.92)",
     copy: "hsla(270, 15.797828016000002%, 0%, 0.88)",
     calm: "rgba(0, 0, 0, 0.54)",
+    veryLight: "rgba(0, 0, 0, 0.1)",
   },
   white: "#fff",
   black: "#000",
@@ -29,6 +31,12 @@ export const colors = {
   blue: {
     soft: "#0094f1",
     light: "#bfe7ff",
+  },
+  red: {
+    bright: "#ff0000",
+    medium: "#c80000",
+    mediumDark: "#900000",
+    dark: "#450000",
   },
 };
 
@@ -43,19 +51,37 @@ export interface ThemeColors {
   navBarItem: string;
   navBarSubItem: string;
   activeItem: string;
+  regularText: string;
+  dates: string;
+  shadow: string;
+  button: string;
+  buttonHover: string;
+  buttonText: string;
+  buttonSecondary: string;
+  buttonSecondaryHover: string;
+  buttonSecondaryText: string;
 }
 
 export const themeLight: ThemeColors = {
-  background1: colors.white,
+  background1: colors.lighterGrayWarm,
   background2: colors.lightGrayWarm,
   headerBackground1: colors.slateBlue,
   headerBackground2: colors.slateGreen,
-  headerText: colors.white,
+  headerText: colors.black,
   navBarText: colors.gray.dark,
   navBarHover: colors.orange.medium,
   navBarItem: colors.orange.light,
   navBarSubItem: colors.gray.calm,
-  activeItem: colors.slateGreen,
+  activeItem: colors.red.medium,
+  regularText: colors.black,
+  dates: colors.gray.calm,
+  shadow: colors.gray.veryLight,
+  button: colors.red.medium,
+  buttonHover: colors.red.bright,
+  buttonText: colors.lightGrayWarm,
+  buttonSecondary: colors.red.dark,
+  buttonSecondaryHover: colors.red.bright,
+  buttonSecondaryText: colors.lightGrayWarm,
 };
 
 export const fonts = {
@@ -81,6 +107,8 @@ export const widths = {
 
 export const dimensions = {
   fontSize: {
+    xsmall: 12,
+    small: 14,
     regular: 16,
     large: 18,
   },
@@ -89,6 +117,8 @@ export const dimensions = {
     h2: 1.953,
     h3: 1.563,
     h4: 1.25,
+    huge1: 5,
+    huge2: 4,
   },
   lineHeight: {
     regular: 1.45,
@@ -98,5 +128,5 @@ export const dimensions = {
 };
 
 export const heights = {
-  header: 60,
+  header: 80,
 };

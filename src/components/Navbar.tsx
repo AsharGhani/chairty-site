@@ -10,7 +10,6 @@ const colorTheme = themeLight;
 const StyledNavbar = styled.nav`
   margin: 0px;
   padding: 0px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
   width: 100%;
 `; // reset margins and paddings
 
@@ -62,8 +61,11 @@ const MenuItemLink = styled(Link)`
   background: ${colorTheme.background1};
   color: ${colorTheme.navBarText};
   padding: 1rem;
+  transition: background-color 0.3 ease;
+  &:focus,
   &:hover {
     text-decoration: none;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.3);
   }
   &:after {
     content: "";

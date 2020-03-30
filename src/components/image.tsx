@@ -13,8 +13,8 @@ interface StaticQueryProps {
 const HeaderImage: React.FC = () => (
   <StaticQuery
     query={graphql`
-      query headerImage {
-        file(relativePath: { eq: "images/teamwork.svg" }) {
+      query teamworkImage {
+        file(relativePath: { eq: "images/teamwork.png" }) {
           childImageSharp {
             fluid(maxWidth: 150) {
               ...GatsbyImageSharpFluid

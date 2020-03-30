@@ -157,4 +157,14 @@ export default `
       padding-left: 1.25rem;
     }
   }
+
+  @font-face {
+    font-family: "Rage Italic";
+    src: url("//db.onlinewebfonts.com/t/21400dc679986534519c638136d62dbf.eot");
+    src: url("//db.onlinewebfonts.com/t/21400dc679986534519c638136d62dbf.eot?#iefix") format("embedded-opentype"),
+      url("//db.onlinewebfonts.com/t/21400dc679986534519c638136d62dbf.woff2") format("woff2"),
+      url("//db.onlinewebfonts.com/t/21400dc679986534519c638136d62dbf.woff") format("woff"),
+      url("//db.onlinewebfonts.com/t/21400dc679986534519c638136d62dbf.ttf") format("truetype"),
+      url("//db.onlinewebfonts.com/t/21400dc679986534519c638136d62dbf.svg#Rage Italic") format("svg");
+    }
 `;
