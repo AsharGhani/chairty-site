@@ -65,7 +65,6 @@ const MenuItemLink = styled(Link)`
   &:focus,
   &:hover {
     text-decoration: none;
-    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.3);
   }
   &:after {
     content: "";
@@ -92,36 +91,36 @@ const Navbar: React.FC = () => (
   <StyledNavbar>
     <Menu>
       <MenuItem>
-        <MenuItemLink to="/About">About</MenuItemLink>
+        <MenuItemLink to="/about">About</MenuItemLink>
       </MenuItem>
       <MenuItem>
-        <MenuItemLink to="/Projects/">All Projects</MenuItemLink>
+        <MenuItemLink to="/">All Projects</MenuItemLink>
         <SubMenu>
           <SubMenuItem>
-            <MenuItemLink to="/Projects/HealthCare">Health Care</MenuItemLink>
+            <MenuItemLink to="/Projects/healthcare">Health Care</MenuItemLink>
           </SubMenuItem>
           <SubMenuItem>
-            <MenuItemLink to="/Projects/Water">Access to Water</MenuItemLink>
+            <MenuItemLink to="/Projects/water">Access to Water</MenuItemLink>
           </SubMenuItem>
           <SubMenuItem>
-            <MenuItemLink to="/Projects/PovertyAlleviation">Poverty Alleviation</MenuItemLink>
+            <MenuItemLink to="/Projects/povertyAlleviation">Poverty Alleviation</MenuItemLink>
           </SubMenuItem>
           <SubMenuItem>
-            <MenuItemLink to="/Projects/Marriage">Marriage</MenuItemLink>
+            <MenuItemLink to="/Projects/marriage">Marriage</MenuItemLink>
           </SubMenuItem>
           <SubMenuItem>
-            <MenuItemLink to="/Projects/Education">Education</MenuItemLink>
+            <MenuItemLink to="/Projects/education">Education</MenuItemLink>
           </SubMenuItem>
           <SubMenuItem>
-            <MenuItemLink to="/Projects/MealISB">Meal ISB</MenuItemLink>
+            <MenuItemLink to="/Projects/mealISB">Meal ISB</MenuItemLink>
           </SubMenuItem>
         </SubMenu>
       </MenuItem>
       <MenuItem>
-        <MenuItemLink to="/CurrentProjects">Current Projects</MenuItemLink>
+        <MenuItemLink to="/currentProjects">Current Projects</MenuItemLink>
       </MenuItem>
       <MenuItem>
-        <MenuItemLink to="/Highlights">Highlights</MenuItemLink>
+        <MenuItemLink to="/highlights">Highlights</MenuItemLink>
       </MenuItem>
     </Menu>
   </StyledNavbar>
