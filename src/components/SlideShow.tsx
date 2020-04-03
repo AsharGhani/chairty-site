@@ -9,7 +9,6 @@ import { Carousel } from "react-responsive-carousel";
 import { themeLight, dimensions, breakpoints } from "../styles/variables";
 import styled from "@emotion/styled";
 import { css } from "@emotion/core";
-import { inherits } from "util";
 import { getEmSize } from "../styles/mixins";
 
 const colorTheme = themeLight;
@@ -114,6 +113,7 @@ class SlideShowComponent extends React.Component<SlideShowComponentProps, SlideS
           autoPlay={this.state.autoPlay}
           selectedItem={this.state.selectedItem}
           onChange={itemIndex => this.setState({ selectedItem: itemIndex })}
+          showStatus={false}
         >
           {images}
         </Carousel>
