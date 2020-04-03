@@ -44,6 +44,7 @@ const StyledNodeButton = styled.div`
 `;
 
 interface childImageSharpNode {
+  name: string;
   childImageSharp: {
     fluid: any;
   };
@@ -71,7 +72,12 @@ class SlideShowComponent extends React.Component<SlideShowComponentProps, SlideS
 
   render() {
     const images: any[] = [];
-    for (const node of this.props.nodes) {
+
+    const sortedNodes = this.props.nodes.sort((node1: childImageSharpNode, node2: childImageSharpNode) =>
+      node1.name.localeCompare(node2.name),
+    );
+
+    for (const node of sortedNodes) {
       images.push(
         <div>
           <Img fluid={node.childImageSharp.fluid} alt="Image"></Img>
@@ -133,6 +139,7 @@ const SlideShow: React.FC<SlideShowProps> = (props: SlideShowProps) => (
       query slideshow {
         allFile(filter: { relativePath: { regex: "/slideshow/" } }) {
           nodes {
+            name
             childImageSharp {
               fluid(maxWidth: 1024) {
                 ...GatsbyImageSharpFluid

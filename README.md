@@ -22,22 +22,25 @@ A nodejs >= 6.0.0 setup with [yarn](https://yarnpkg.com/) is recommended.
 yarn
 
 # ...or, for npm
-npm install
+yarn install
 
 # serve with hot reload at localhost:8000
-npm start
+yarn start
 
 # build for production
-npm run build
+yarn build
 
 # build for production and push to gh-pages branch
-npm run deploy
+yarn deploy
 ```
 
 ## Credits
 
 Built with [Gatsby](https://www.gatsbyjs.org/) - the blazing-fast static site generator for [React](https://facebook.github.io/react/).
 
-<!-- ## Deploy
+## Deploy
 
- [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/asharghani/charity-site -->
+Deployed to github pages at [Ibad - Ur - Rahman](https://asharghani.github.io/chairty-site/)
+
+<!--
+# [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/asharghani/charity-site -->
