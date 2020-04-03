@@ -14,12 +14,13 @@ import { breakpoints } from "../styles/variables";
 const lg = `@media (min-width: ${getEmSize(breakpoints.lg)}em)`;
 
 const StyledGrid = styled.div`
-  width: 100%;
   height: 100%;
+  width: 100%;
 
   ${lg} {
     display: grid;
     grid-template-columns: 300px 1fr;
+    max-width: 1600px;
   }
 `;
 
@@ -30,6 +31,7 @@ const StyledMainPageSidePanel = styled.div`
 
 const StyledSlideShowContainer = styled.div`
   min-width: 200px;
+  max-width: 1300px;
 `;
 
 const IndexPage = () => (

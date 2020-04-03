@@ -1,0 +1,5 @@
+#nav-bar .menu-link-active {
+  &:after {
+    transform: scaleX(1);
+  }
+}

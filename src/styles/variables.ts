@@ -94,7 +94,7 @@ export const fonts = {
 export const breakpoints = {
   xs: 0,
   sm: 576,
-  md: 768,
+  md: 724,
   lg: 992,
   xl: 1200,
 };

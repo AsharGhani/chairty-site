@@ -3,24 +3,31 @@ import Img from "gatsby-image";
 import { graphql, StaticQuery } from "gatsby";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import "../styles/SlideShow.css";
+import "../styles/SlideShow.scss";
 
 import { Carousel } from "react-responsive-carousel";
-import { themeLight, dimensions } from "../styles/variables";
+import { themeLight, dimensions, breakpoints } from "../styles/variables";
 import styled from "@emotion/styled";
 import { css } from "@emotion/core";
 import { inherits } from "util";
+import { getEmSize } from "../styles/mixins";
 
 const colorTheme = themeLight;
+
+const md = `@media (min-width: ${getEmSize(breakpoints.md)}em)`;
 
 const StyledNodeButtonsContainer = styled.div`
   position: relative;
   top: -50px;
-  display: flex;
+  display: none;
   height: 50px;
   width: 100%;
   flex-direction: row;
   align-items: space-between;
+
+  ${md} {
+    display: flex;
+  }
 `;
 
 const StyledNodeButton = styled.div`

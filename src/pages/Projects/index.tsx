@@ -6,7 +6,7 @@ const IndexPage = () => (
   <IndexLayout>
     <Page>
       <Container>
-        <h1>Projects</h1>
+        <h1>All Projects</h1>
       </Container>
     </Page>
   </IndexLayout>

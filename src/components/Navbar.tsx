@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link } from "gatsby";
+import { Link, GatsbyLinkProps } from "gatsby";
 import styled from "@emotion/styled";
 import { themeLight, heights } from "../styles/variables";
 
@@ -88,39 +88,59 @@ const MenuItemLink = styled(Link)`
 `;
 
 const Navbar: React.FC = () => (
-  <StyledNavbar>
+  <StyledNavbar id="nav-bar">
     <Menu>
       <MenuItem>
-        <MenuItemLink to="/about">About</MenuItemLink>
+        <MenuItemLink to="/about" activeClassName="menu-link-active">
+          About
+        </MenuItemLink>
       </MenuItem>
       <MenuItem>
-        <MenuItemLink to="/">All Projects</MenuItemLink>
+        <MenuItemLink to="/Projects/" activeClassName="menu-link-active">
+          All Projects
+        </MenuItemLink>
         <SubMenu>
           <SubMenuItem>
-            <MenuItemLink to="/Projects/healthcare">Health Care</MenuItemLink>
+            <MenuItemLink to="/Projects/healthcare" activeClassName="menu-link-active">
+              Health Care
+            </MenuItemLink>
           </SubMenuItem>
           <SubMenuItem>
-            <MenuItemLink to="/Projects/water">Access to Water</MenuItemLink>
+            <MenuItemLink to="/Projects/water" activeClassName="menu-link-active">
+              Access to Water
+            </MenuItemLink>
           </SubMenuItem>
           <SubMenuItem>
-            <MenuItemLink to="/Projects/povertyAlleviation">Poverty Alleviation</MenuItemLink>
+            <MenuItemLink to="/Projects/povertyAlleviation" activeClassName="menu-link-active">
+              Poverty Alleviation
+            </MenuItemLink>
           </SubMenuItem>
           <SubMenuItem>
-            <MenuItemLink to="/Projects/marriage">Marriage</MenuItemLink>
+            <MenuItemLink to="/Projects/marriage" activeClassName="menu-link-active">
+              Marriage
+            </MenuItemLink>
           </SubMenuItem>
           <SubMenuItem>
-            <MenuItemLink to="/Projects/education">Education</MenuItemLink>
+            <MenuItemLink to="/Projects/education" activeClassName="menu-link-active">
+              Education
+            </MenuItemLink>
           </SubMenuItem>
           <SubMenuItem>
-            <MenuItemLink to="/Projects/mealISB">Meal ISB</MenuItemLink>
+            <MenuItemLink to="/Projects/mealISB" activeClassName="menu-link-active">
+              Meal ISB
+            </MenuItemLink>
           </SubMenuItem>
         </SubMenu>
       </MenuItem>
       <MenuItem>
-        <MenuItemLink to="/currentProjects">Current Projects</MenuItemLink>
+        <MenuItemLink to="/currentProjects" activeClassName="menu-link-active">
+          Current Projects
+        </MenuItemLink>
       </MenuItem>
       <MenuItem>
-        <MenuItemLink to="/highlights">Highlights</MenuItemLink>
+        <MenuItemLink to="/highlights" activeClassName="menu-link-active">
+          Highlights
+        </MenuItemLink>
       </MenuItem>
     </Menu>
   </StyledNavbar>
