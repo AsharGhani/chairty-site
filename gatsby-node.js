@@ -1,47 +1,11 @@
-'use strict'
+"use strict";
 
-const path = require('path')
-
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
-
-  // Sometimes, optional fields tend to get not picked up by the GraphQL
-  // interpreter if not a single content uses it. Therefore, we're putting them
-  // through `createNodeField` so that the fields still exist and GraphQL won't
-  // trip up. An empty string is still required in replacement to `null`.
-
-  switch (node.internal.type) {
-    case 'MarkdownRemark': {
-      const { permalink, layout } = node.frontmatter
-      const { relativePath } = getNode(node.parent)
-
-      let slug = permalink
-
-      if (!slug) {
-        slug = `/${relativePath.replace('.md', '')}/`
-      }
-
-      // Used to generate URL to view this content.
-      createNodeField({
-        node,
-        name: 'slug',
-        value: slug || ''
-      })
-
-      // Used to determine a page layout.
-      createNodeField({
-        node,
-        name: 'layout',
-        value: layout || ''
-      })
-    }
-  }
-}
+const path = require("path");
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage } = actions;
 
-  const allMarkdown = await graphql(`
+  /*const allMarkdown = await graphql(`
     {
       allMarkdownRemark(limit: 1000) {
         edges {
@@ -54,15 +18,15 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     }
-  `)
+  `);
 
   if (allMarkdown.errors) {
-    console.error(allMarkdown.errors)
-    throw new Error(allMarkdown.errors)
+    console.error(allMarkdown.errors);
+    throw new Error(allMarkdown.errors);
   }
 
   allMarkdown.data.allMarkdownRemark.edges.forEach(({ node }) => {
-    const { slug, layout } = node.fields
+    const { slug, layout } = node.fields;
 
     createPage({
       path: slug,
@@ -75,11 +39,96 @@ exports.createPages = async ({ graphql, actions }) => {
       // template.
       //
       // Note that the template has to exist first, or else the build will fail.
-      component: path.resolve(`./src/templates/${layout || 'page'}.tsx`),
+      component: path.resolve(`./src/templates/${layout || "page"}.tsx`),
       context: {
         // Data passed to context is available in page queries as GraphQL variables.
-        slug
+        slug,
+      },
+    });
+  });
+  */
+
+  const allProjectTypes = await graphql(`
+    {
+      allContentfulProjectType(limit: 1000) {
+        edges {
+          node {
+            slug
+          }
+        }
       }
-    })
-  })
-}
+    }
+  `);
+
+  if (allProjectTypes.errors) {
+    console.error("Error creating contentful pages: ", allProjectTypes.errors);
+    return;
+  }
+
+  const projectTypeTemplate = path.resolve("src/templates/projectType.tsx");
+
+  if (!allProjectTypes.data || !allProjectTypes.data.allContentfulProjectType || !allProjectTypes.data.allContentfulProjectType.edges) {
+    console.error("Couldn't find edges for projectType:" + JSON.stringify(allProjectTypes));
+    return;
+  }
+
+  allProjectTypes.data.allContentfulProjectType.edges.forEach(edge => {
+    console.log("Processing node: " + JSON.stringify(edge));
+    const { slug } = edge.node;
+    console.log("Slug: " + slug);
+    createPage({
+      path: "/projecttype/" + slug,
+      component: projectTypeTemplate,
+      context: {
+        // Data Passed to context is available in page queries as GraphQL variables.
+        slug,
+      },
+    });
+  });
+
+  const allProjectEntries = await graphql(`
+    {
+      allContentfulProjectEntry {
+        edges {
+          node {
+            slug
+            layout
+          }
+        }
+      }
+    }
+  `);
+
+  if (allProjectEntries.errors) {
+    console.error("Error creating contentful pages: ", allProjectEntries.errors);
+    return;
+  }
+
+  if (
+    !allProjectEntries.data ||
+    !allProjectEntries.data.allContentfulProjectEntry ||
+    !allProjectEntries.data.allContentfulProjectEntry.edges
+  ) {
+    console.error("Couldn't find edges for projectEntryType:" + JSON.stringify(allProjectEntries));
+    return;
+  }
+
+  const projectEntryTemplate = path.resolve("src/templates/projectEntry.tsx");
+
+  allProjectEntries.data.allContentfulProjectEntry.edges.forEach(edge => {
+    console.log("Processing Entry node: " + JSON.stringify(edge));
+    const { slug, layout } = edge.node;
+    console.log("Project Entry Slug: " + slug);
+    console.log("ProjectEntry Layout: " + layout);
+    if (layout !== "NoPage") {
+      createPage({
+        path: "/projectentry/" + slug,
+        component: projectEntryTemplate,
+        context: {
+          // Data Passed to context is available in page queries as GraphQL variables.
+          slug,
+        },
+      });
+    }
+  });
+};

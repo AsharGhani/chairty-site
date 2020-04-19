@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 import { themeLight, dimensions } from "../styles/variables";
+import { Link } from "gatsby";
 
 interface ProjectInfo {
   title: string;
@@ -54,7 +55,7 @@ const StyledProjectLink = styled.div`
   }
 `;
 
-const RecentProjects = (React.FC = () => {
+const RecentProjects: React.FC = () => {
   const [projects, setProjects] = React.useState<ProjectInfo[]>([]);
 
   setTimeout(() => {
@@ -83,9 +84,9 @@ const RecentProjects = (React.FC = () => {
       <StyleProjectInfo key={project.id}>
         <StyledProjectDate>{project.date.toDateString()}</StyledProjectDate>
         <StyledProjectTitle>{project.title}</StyledProjectTitle>
-        <a href={"/project/" + project.id}>
+        <Link to={"/project/" + project.id}>
           <StyledProjectLink>Read More</StyledProjectLink>
-        </a>
+        </Link>
       </StyleProjectInfo>,
     );
   }
@@ -96,6 +97,6 @@ const RecentProjects = (React.FC = () => {
       {renderedProjectInfos}
     </StyledProjectInfoListContainer>
   );
-});
+};
 
 export default RecentProjects;

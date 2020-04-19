@@ -79,7 +79,7 @@ class SlideShowComponent extends React.Component<SlideShowComponentProps, SlideS
     for (const node of sortedNodes) {
       images.push(
         <div>
-          <Img fluid={node.childImageSharp.fluid} alt="Image"></Img>
+          <Img fluid={node.childImageSharp.fluid} alt="Image" key={node.name}></Img>
         </div>,
       );
     }

@@ -59,5 +59,12 @@ module.exports = {
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-svgr",
     "gatsby-plugin-sass",
+    {
+      resolve: "gatsby-source-contentful",
+      options: {
+        spaceId: "",
+        accessToken: "",
+      },
+    },
   ],
 };

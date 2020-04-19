@@ -44,6 +44,7 @@
     "gatsby-remark-prismjs": "^3.3.0",
     "gatsby-remark-responsive-iframe": "^2.2.0",
     "gatsby-remark-smartypants": "^2.1.0",
+    "gatsby-source-contentful": "^2.2.7",
     "gatsby-source-filesystem": "^2.1.0",
     "gatsby-transformer-json": "^2.2.0",
     "gatsby-transformer-remark": "^2.5.0",
@@ -57,9 +58,10 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
-    "typescript": "^3.5.2"
+    "typescript": "^3.8.3"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-optional-chaining": "^7.9.0",
     "@types/classnames": "^2.2.8",
     "@types/node": "^12.0.10",
     "@types/react": "^16.8.22",

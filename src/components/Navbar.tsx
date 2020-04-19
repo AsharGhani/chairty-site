@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link, GatsbyLinkProps } from "gatsby";
+import { Link, graphql, StaticQuery } from "gatsby";
 import styled from "@emotion/styled";
 import { themeLight, heights } from "../styles/variables";
 
@@ -87,63 +87,103 @@ const MenuItemLink = styled(Link)`
   }
 `;
 
+interface StaticQueryProps {
+  allContentfulProjectType: {
+    edges: [
+      {
+        node: ProjectType;
+      },
+    ];
+  };
+}
+
 const Navbar: React.FC = () => (
-  <StyledNavbar id="nav-bar">
-    <Menu>
-      <MenuItem>
-        <MenuItemLink to="/about" activeClassName="menu-link-active">
-          About
-        </MenuItemLink>
-      </MenuItem>
-      <MenuItem>
-        <MenuItemLink to="/Projects/" activeClassName="menu-link-active">
-          All Projects
-        </MenuItemLink>
-        <SubMenu>
-          <SubMenuItem>
-            <MenuItemLink to="/Projects/healthcare" activeClassName="menu-link-active">
-              Health Care
+  <StaticQuery
+    query={graphql`
+      query NavbarAllProjectTypesQuery {
+        allContentfulProjectType(limit: 1000) {
+          edges {
+            node {
+              slug
+              title
+              parentProject {
+                slug
+              }
+            }
+          }
+        }
+      }
+    `}
+    render={(data: StaticQueryProps) => {
+      const projectsSubMenuLinks: React.ReactNode[] = [];
+      for (const { node } of data.allContentfulProjectType.edges) {
+        if (node.parentProject) {
+          continue;
+        }
+
+        projectsSubMenuLinks.push(
+          <SubMenuItem key={node.slug}>
+            <MenuItemLink to={"/projecttype/" + node.slug} activeClassName="menu-link-active">
+              {node.title}
             </MenuItemLink>
-          </SubMenuItem>
-          <SubMenuItem>
-            <MenuItemLink to="/Projects/water" activeClassName="menu-link-active">
-              Access to Water
-            </MenuItemLink>
-          </SubMenuItem>
-          <SubMenuItem>
-            <MenuItemLink to="/Projects/povertyAlleviation" activeClassName="menu-link-active">
-              Poverty Alleviation
-            </MenuItemLink>
-          </SubMenuItem>
-          <SubMenuItem>
-            <MenuItemLink to="/Projects/marriage" activeClassName="menu-link-active">
-              Marriage
-            </MenuItemLink>
-          </SubMenuItem>
-          <SubMenuItem>
-            <MenuItemLink to="/Projects/education" activeClassName="menu-link-active">
-              Education
-            </MenuItemLink>
-          </SubMenuItem>
-          <SubMenuItem>
-            <MenuItemLink to="/Projects/mealISB" activeClassName="menu-link-active">
-              Meal ISB
-            </MenuItemLink>
-          </SubMenuItem>
-        </SubMenu>
-      </MenuItem>
-      <MenuItem>
-        <MenuItemLink to="/currentProjects" activeClassName="menu-link-active">
-          Current Projects
-        </MenuItemLink>
-      </MenuItem>
-      <MenuItem>
-        <MenuItemLink to="/highlights" activeClassName="menu-link-active">
-          Highlights
-        </MenuItemLink>
-      </MenuItem>
-    </Menu>
-  </StyledNavbar>
+          </SubMenuItem>,
+        );
+      }
+
+      /*
+                <SubMenuItem>
+                  <MenuItemLink to="/Projects/water" activeClassName="menu-link-active">
+                    Access to Water
+                  </MenuItemLink>
+                </SubMenuItem>
+                <SubMenuItem>
+                  <MenuItemLink to="/Projects/povertyAlleviation" activeClassName="menu-link-active">
+                    Poverty Alleviation
+                  </MenuItemLink>
+                </SubMenuItem>
+                <SubMenuItem>
+                  <MenuItemLink to="/Projects/marriage" activeClassName="menu-link-active">
+                    Marriage
+                  </MenuItemLink>
+                </SubMenuItem>
+                <SubMenuItem>
+                  <MenuItemLink to="/Projects/education" activeClassName="menu-link-active">
+                    Education
+                  </MenuItemLink>
+                </SubMenuItem>
+                <SubMenuItem>
+                  <MenuItemLink to="/Projects/mealISB" activeClassName="menu-link-active">
+                    Meal ISB
+                  </MenuItemLink>
+                </SubMenuItem>*/
+
+      return (
+        <StyledNavbar id="nav-bar">
+          <Menu>
+            <MenuItem>
+              <MenuItemLink to="/about" activeClassName="menu-link-active">
+                About
+              </MenuItemLink>
+            </MenuItem>
+            <MenuItem>
+              <MenuItemLink to="">All Projects</MenuItemLink>
+              <SubMenu>{projectsSubMenuLinks}</SubMenu>
+            </MenuItem>
+            <MenuItem>
+              <MenuItemLink to="/currentProjects" activeClassName="menu-link-active">
+                Current Projects
+              </MenuItemLink>
+            </MenuItem>
+            <MenuItem>
+              <MenuItemLink to="/highlights" activeClassName="menu-link-active">
+                Highlights
+              </MenuItemLink>
+            </MenuItem>
+          </Menu>
+        </StyledNavbar>
+      );
+    }}
+  ></StaticQuery>
 );
 
 export default Navbar;

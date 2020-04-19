@@ -60,6 +60,7 @@ export interface ThemeColors {
   buttonSecondary: string;
   buttonSecondaryHover: string;
   buttonSecondaryText: string;
+  code: string;
 }
 
 export const themeLight: ThemeColors = {
@@ -82,6 +83,7 @@ export const themeLight: ThemeColors = {
   buttonSecondary: colors.red.dark,
   buttonSecondaryHover: colors.red.bright,
   buttonSecondaryText: colors.lightGrayWarm,
+  code: colors.code,
 };
 
 export const fonts = {
