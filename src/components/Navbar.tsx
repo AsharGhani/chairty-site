@@ -1,9 +1,12 @@
 import * as React from "react";
 import { Link, graphql, StaticQuery } from "gatsby";
 import styled from "@emotion/styled";
-import { themeLight, heights } from "../styles/variables";
+import { themeLight, heights, dimensions, breakpoints } from "../styles/variables";
+import { getEmSize } from "../styles/mixins";
 
 const colorTheme = themeLight;
+
+const lg = `@media (min-width: ${getEmSize(breakpoints.lg)}em)`;
 
 /*display: flex;
   flex: 1 0 50%;*/
@@ -11,6 +14,11 @@ const StyledNavbar = styled.nav`
   margin: 0px;
   padding: 0px;
   width: 100%;
+  font-size: ${dimensions.fontSize.small}px;
+
+  ${lg} {
+    font-size: ${dimensions.fontSize.regular}px;
+  }
 `; // reset margins and paddings
 
 const Menu = styled.ul`
@@ -60,8 +68,12 @@ const MenuItemLink = styled(Link)`
   text-decoration: none;
   background: ${colorTheme.background1};
   color: ${colorTheme.navBarText};
-  padding: 1rem;
+  padding: 0.5rem;
   transition: background-color 0.3 ease;
+
+  ${lg} {
+    padding: 1rem;
+  }
   &:focus,
   &:hover {
     text-decoration: none;

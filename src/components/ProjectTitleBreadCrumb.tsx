@@ -1,14 +1,28 @@
 import * as React from "react";
 import styled from "@emotion/styled";
-import { themeLight, dimensions, widths } from "../styles/variables";
+import { themeLight, dimensions, widths, breakpoints } from "../styles/variables";
 import { Link } from "gatsby";
 import { getEmSize } from "../styles/mixins";
 
 const colorTheme = themeLight;
 
+const xl = `@media (min-width: ${getEmSize(breakpoints.xl)}em)`;
+const lg = `@media (min-width: ${getEmSize(breakpoints.lg)}em)`;
+
 const StyledTitleContainerDiv = styled.div`
-  width: ${getEmSize(widths.xl)}em;
+  width: 100%;
   padding-bottom: 20px;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+
+  ${xl} {
+    width: ${getEmSize(widths.xl)}em;
+    margin: auto;
+  }
+
   &:after {
     content: "";
     display: block;
@@ -19,12 +33,20 @@ const StyledTitleContainerDiv = styled.div`
 `;
 
 const SytledTitle = styled.span`
-  font-size: ${dimensions.headingSizes.h1}rem;
+  font-size: ${dimensions.headingSizes.h3}rem;
+
+  ${lg} {
+    font-size: ${dimensions.headingSizes.h1}rem;
+  }
 `;
 
 const StyledBreadCrumbEntry = styled(Link)`
-  font-size: ${dimensions.headingSizes.h4}rem;
+  font-size: ${dimensions.fontSize.regular}px;
   color: ${colorTheme.buttonSecondary};
+
+  ${lg} {
+    font-size: ${dimensions.headingSizes.h4}rem;
+  }
 `;
 
 const StyledBreadCrumbSeparator = styled.span`

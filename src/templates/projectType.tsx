@@ -2,17 +2,31 @@ import * as React from "react";
 import { graphql } from "gatsby";
 
 import Page from "../components/Page";
-import Container from "../components/Container";
 import IndexLayout from "../layouts";
 import styled from "@emotion/styled";
 import PictureCard from "../components/PictureCard";
 import ProjectTitleBreadCrump from "../components/ProjectTitleBreadCrumb";
+import { getEmSize } from "../styles/mixins";
+import { widths, breakpoints } from "../styles/variables";
+
+const xl = `@media (min-width: ${getEmSize(breakpoints.xl)}em)`;
+
+const StyledDescription = styled.div`
+  width: 100%;
+
+  ${xl} {
+    width: ${getEmSize(widths.xl)}em;
+    margin: auto;
+  }
+`;
 
 const StyledChildLinksContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
+  flex-wrap: wrap;
 `;
 
 interface PageTemplateProps {
@@ -66,15 +80,19 @@ const PageTemplate: React.SFC<PageTemplateProps> = ({ data }) => {
   return (
     <IndexLayout>
       <Page>
-        <Container>
+        <div className="maxWidth">
           <ProjectTitleBreadCrump title={projectType.title} parent={projectType.parentProject}></ProjectTitleBreadCrump>
           {/* eslint-disable-next-line react/no-danger */}
-          {descriptionHtml && <div dangerouslySetInnerHTML={{ __html: descriptionHtml }} />}
+          {descriptionHtml && (
+            <StyledDescription>
+              <div dangerouslySetInnerHTML={{ __html: descriptionHtml }} />
+            </StyledDescription>
+          )}
           <StyledChildLinksContainer>
             {childProjectTypeCards}
             {childProjectEntryCards}
           </StyledChildLinksContainer>
-        </Container>
+        </div>
       </Page>
     </IndexLayout>
   );

@@ -2,10 +2,22 @@ import * as React from "react";
 import { graphql } from "gatsby";
 
 import Page from "../components/Page";
-import Container from "../components/Container";
 import IndexLayout from "../layouts";
 import styled from "@emotion/styled";
 import ProjectTitleBreadCrump from "../components/ProjectTitleBreadCrumb";
+import { getEmSize } from "../styles/mixins";
+import { widths, breakpoints } from "../styles/variables";
+
+const xl = `@media (min-width: ${getEmSize(breakpoints.xl)}em)`;
+
+const StyledDescription = styled.div`
+  width: 100%;
+
+  ${xl} {
+    width: ${getEmSize(widths.xl)}em;
+    margin: auto;
+  }
+`;
 
 interface PageTemplateProps {
   data: {
@@ -27,12 +39,17 @@ const PageTemplate: React.SFC<PageTemplateProps> = ({ data }) => {
   return (
     <IndexLayout>
       <Page>
-        <Container>
+        <div className="maxWidth">
           <ProjectTitleBreadCrump title={projectEntry.title} parent={projectEntry.parentProject}></ProjectTitleBreadCrump>
           {/* eslint-disable-next-line react/no-danger */}
-          {!journeyHtml && descriptionHtml && <div dangerouslySetInnerHTML={{ __html: descriptionHtml }} />}
+          {!journeyHtml && descriptionHtml && (
+            <StyledDescription>
+              <div dangerouslySetInnerHTML={{ __html: descriptionHtml }} />
+            </StyledDescription>
+          )}
+
           {journeyHtml && <div dangerouslySetInnerHTML={{ __html: journeyHtml }}></div>}
-        </Container>
+        </div>
       </Page>
     </IndexLayout>
   );
