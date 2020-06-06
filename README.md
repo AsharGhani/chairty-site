@@ -1,7 +1,9 @@
-# Charity Site for Ibad ur Rahman Fooundation
+# Charity Site for Ibaad ur Rahman Foundation
 
-> A site for the charity organization "Ibad ur Rahmand Foundation" that provides services for clean water, poverty alleviation
-> health care, Marriage Support, Education, Food
+> A site for the charity organization "Ibaad ur Rahmand Foundation" that provides services for clean water, poverty alleviation
+> health care, Marriage Support, Education, Food.
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/008bf248-0acf-48ae-8ab8-35e211034c4b/deploy-status)](https://app.netlify.com/sites/ibaad-ur-rahman-ration-drive/deploys)
 
 ## Features
 
@@ -40,7 +42,4 @@ Built with [Gatsby](https://www.gatsbyjs.org/) - the blazing-fast static site ge
 
 ## Deploy
 
-Deployed to github pages at [Ibad - Ur - Rahman](https://asharghani.github.io/chairty-site/)
-
-<!--
-# [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/asharghani/charity-site -->
+Deployed to github pages at [Ibad - Ur - Rahman](https://ibaad-ur-rahman.org/)

@@ -1,6 +1,6 @@
 import * as React from "react";
 import Img from "gatsby-image";
-import { graphql, StaticQuery } from "gatsby";
+import { graphql, StaticQuery, Link } from "gatsby";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "../styles/SlideShow.scss";
@@ -42,16 +42,10 @@ const StyledNodeButton = styled.div`
   }
 `;
 
-interface childImageSharpNode {
-  name: string;
-  childImageSharp: {
-    fluid: any;
-  };
-}
-
 interface SlideShowComponentProps {
-  nodes: childImageSharpNode[];
+  nodes: ChildImageSharpNode[];
   nodeTexts: string[];
+  links: string[];
 }
 
 interface SlideShowComponentState {
@@ -72,14 +66,16 @@ class SlideShowComponent extends React.Component<SlideShowComponentProps, SlideS
   render() {
     const images: any[] = [];
 
-    const sortedNodes = this.props.nodes.sort((node1: childImageSharpNode, node2: childImageSharpNode) =>
+    const sortedNodes = this.props.nodes.sort((node1: ChildImageSharpNode, node2: ChildImageSharpNode) =>
       node1.name.localeCompare(node2.name),
     );
 
-    for (const node of sortedNodes) {
+    for (const [i, node] of sortedNodes.entries()) {
       images.push(
         <div>
-          <Img fluid={node.childImageSharp.fluid} alt="Image" key={node.name}></Img>
+          <Link to={this.props.links[i]}>
+            <Img fluid={node.childImageSharp.fluid} alt={node.name} key={node.name}></Img>
+          </Link>
         </div>,
       );
     }
@@ -125,12 +121,13 @@ class SlideShowComponent extends React.Component<SlideShowComponentProps, SlideS
 
 interface StaticQueryProps {
   allFile: {
-    nodes: childImageSharpNode[];
+    nodes: ChildImageSharpNode[];
   };
 }
 
 interface SlideShowProps {
   nodeTexts: string[];
+  links: string[];
 }
 
 const SlideShow: React.FC<SlideShowProps> = (props: SlideShowProps) => (
@@ -149,7 +146,9 @@ const SlideShow: React.FC<SlideShowProps> = (props: SlideShowProps) => (
         }
       }
     `}
-    render={(data: StaticQueryProps) => <SlideShowComponent nodes={data.allFile.nodes} nodeTexts={props.nodeTexts}></SlideShowComponent>}
+    render={(data: StaticQueryProps) => (
+      <SlideShowComponent nodes={data.allFile.nodes} nodeTexts={props.nodeTexts} links={props.links}></SlideShowComponent>
+    )}
   />
 );
 

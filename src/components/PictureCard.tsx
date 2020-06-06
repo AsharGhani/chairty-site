@@ -13,12 +13,14 @@ export interface PictureCardProps {
   imageTitle?: string;
 }
 
-const StyledDiv = styled.div`
+const StyledPictureCardContainer = styled.div`
   margin: 10px 20px;
   display: flex;
   flex-direction: column;
   width: 300px;
   align-items: center;
+  box-shadow: 0 0px 12px rgba(0, 0, 0, 0.2);
+  padding: 16px;
 `;
 
 const StyledImage = styled.img`
@@ -68,12 +70,12 @@ const PictureCard: React.FC<PictureCardProps> = function(props: PictureCardProps
   }
 
   return (
-    <StyledDiv className={linkClass} {...onClickAttribute}>
-      {props.imageSrc && <StyledImage src={props.imageSrc} title={props.imageTitle}></StyledImage>}
+    <StyledPictureCardContainer className={linkClass} {...onClickAttribute}>
+      {props.imageSrc && <StyledImage src={props.imageSrc} title={props.imageTitle} width="300px" height="300px"></StyledImage>}
       <StyledTitle>{props.title}</StyledTitle>
       {props.description && <StyledDescription>{props.description}</StyledDescription>}
       {props.link && <StyledProjectLink>View</StyledProjectLink>}
-    </StyledDiv>
+    </StyledPictureCardContainer>
   );
 };
 

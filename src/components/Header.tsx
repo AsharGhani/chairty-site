@@ -8,11 +8,13 @@ import Container from "./Container";
 import HeaderImage from "./HeaderImage";
 import Navbar from "./Navbar";
 import { getEmSize } from "../styles/mixins";
+import BannerWithImage from "./BannerWithImage";
 
 const colorTheme = themeLight;
 
+const lg = `@media (min-width: ${getEmSize(breakpoints.lg)}em)`;
+
 const StyledHeader = styled.header`
-  padding: 0 ${dimensions.containerPadding}rem;
   color: ${transparentize(0.5, colors.white)};
 `;
 
@@ -21,14 +23,14 @@ const HeaderInner = styled(Container)`
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 100%;
   margin-top: 10px;
   flex-wrap: wrap;
 `;
 
 const HomepageLink = styled(Link)`
+  padding-left: ${dimensions.containerPadding}rem;
   color: ${colorTheme.headerText};
-  font-size: ${dimensions.headingSizes.h1}rem;
+  font-size: ${dimensions.headingSizes.h2}rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -38,6 +40,10 @@ const HomepageLink = styled(Link)`
   &:hover,
   &:focus {
     text-decoration: none;
+  }
+
+  ${lg} {
+    font-size: ${dimensions.headingSizes.h1}rem;
   }
 `;
 
@@ -49,8 +55,9 @@ const NavBarContainer = styled(Container)`
 `;
 
 const SecondaryTitleContainer = styled.div`
-  font-style: italic;
-  font-size: ${dimensions.headingSizes.h3};
+  font-size: ${dimensions.headingSizes.h3}rem;
+  color: ${colorTheme.activeItem};
+  padding-bottom: 8px;
 `;
 
 interface HeaderProps {
@@ -66,11 +73,12 @@ const Header: React.FC<HeaderProps> = ({ title, secondaryTitle }) => (
           <HeaderImage />
           {title}
         </HomepageLink>
-        <SecondaryTitleContainer>{secondaryTitle}</SecondaryTitleContainer>
+        {undefined && <SecondaryTitleContainer>{secondaryTitle}</SecondaryTitleContainer>}
         <NavBarContainer>
           <Navbar></Navbar>
         </NavBarContainer>
       </HeaderInner>
+      <BannerWithImage />
     </StyledHeader>
   </>
 );

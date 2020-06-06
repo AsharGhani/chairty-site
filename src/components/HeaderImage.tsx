@@ -48,7 +48,7 @@ const HeaderImage: React.FC = () => (
   <StaticQuery
     query={graphql`
       query headerImage {
-        file(relativePath: { eq: "images/logo.png" }) {
+        file(relativePath: { eq: "images/logo.jpg" }) {
           childImageSharp {
             fluid(maxWidth: 180) {
               ...GatsbyImageSharpFluid

@@ -2,17 +2,16 @@
 
 module.exports = {
   siteMetadata: {
-    title: "Ibad - Ur - Rahman",
+    title: "Ibaad - ur - Rahman",
     description: "Serving humanity by giving back to life",
     keywords: "charity, humanity, clean, water, poverty, alleviation, education, food, health care",
-    siteUrl: "https://asharghani.github.io/chairty-site/",
+    siteUrl: "https://ibaad-ur-rahman.org/",
     author: {
       name: "Ashar Ghani",
       url: "https://github.com/asharghani/",
       email: "ashar.ghani@outlook.com",
     },
   },
-  pathPrefix: "/chairty-site",
   plugins: [
     {
       resolve: "gatsby-source-filesystem",
@@ -49,7 +48,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-canonical-urls",
       options: {
-        siteUrl: "https://asharghani.github.io/chairty-site/",
+        siteUrl: "https://ibaad-ur-rahman.org/",
       },
     },
     "gatsby-plugin-emotion",
@@ -62,8 +61,15 @@ module.exports = {
     {
       resolve: "gatsby-source-contentful",
       options: {
-        spaceId: "",
-        accessToken: "",
+        spaceId: "7cdmx3u8smde",
+        accessToken: "0vUyk5SenAu7JRSkJnAlVg6aW1Rfq4dIYz2BkajvemE",
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        // replace "UA-XXXXXXXXX-X" with your own Tracking ID
+        trackingId: "UA-167029667-1",
       },
     },
   ],

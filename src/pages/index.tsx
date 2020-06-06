@@ -4,7 +4,7 @@ import { getEmSize } from "../styles/mixins";
 
 import Page from "../components/Page";
 import IndexLayout from "../layouts";
-import SlideShow from "../components/Slideshow";
+import SlideShow from "../components/SlideShow";
 import styled from "@emotion/styled";
 import css from "@emotion/core";
 import RecentProjects from "../components/RecentProjects";
@@ -43,7 +43,10 @@ const IndexPage = () => (
           <RecentProjects></RecentProjects>
         </StyledMainPageSidePanel>
         <StyledSlideShowContainer>
-          <SlideShow nodeTexts={["Health Care", "Access To Water", "Poverty Alleviation", "Education"]}></SlideShow>
+          <SlideShow
+            nodeTexts={["Thar", "Chitral", "Karachi", "Ration Package"]}
+            links={["/projecttype/thar-drive", "/projecttype/chitral-drive", "/projecttype/karachi-drive", "/about"]}
+          ></SlideShow>
         </StyledSlideShowContainer>
       </StyledGrid>
       {/*<Link to="/page-2/">Go to page 2</Link>*/}

@@ -42,7 +42,6 @@ const SubMenu = styled.ul`
   position: absolute;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
   padding: 0px;
-  background: ${colorTheme.background2};
   &:hover {
     display: flex;
   }
@@ -54,15 +53,50 @@ const SubMenu = styled.ul`
 
 const SubMenuItem = styled.li`
   list-style-type: none;
+  min-width: 10rem;
   color: ${colorTheme.navBarText};
-  background: ${colorTheme.background2};
+`;
+
+const NonLinedMenuItem = styled.div`
+  width: auto;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  background: ${colorTheme.background1};
+  color: ${colorTheme.navBarText};
+  padding: 0.5rem;
+  transition: background-color 0.3 ease;
+
+  ${lg} {
+    padding: 1rem;
+  }
+  &:focus,
   &:hover {
-    display: flex;
+    text-decoration: none;
+  }
+  &:after {
+    content: "";
+    display: block;
+    width: 100%;
+    transform: scaleX(0);
+    height: 0.125rem;
+    left: 0.0625rem;
+    background-color: ${colorTheme.activeItem};
+    transform-origin: 100% 50%;
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  &:focus:after,
+  &:hover:after {
+    transform: scaleX(1);
+    transform-origin: 0 50%;
+  }
+  & a {
+    width: 100%;
   }
 `;
 
 const MenuItemLink = styled(Link)`
-  width: 100%;
+  width: auto;
   display: block;
   text-align: center;
   text-decoration: none;
@@ -112,7 +146,7 @@ interface StaticQueryProps {
 const Navbar: React.FC = () => (
   <StaticQuery
     query={graphql`
-      query NavbarAllProjectTypesQuery {
+      query NavbarAllProjectTypeQuery {
         allContentfulProjectType(limit: 1000) {
           edges {
             node {
@@ -128,47 +162,22 @@ const Navbar: React.FC = () => (
     `}
     render={(data: StaticQueryProps) => {
       const projectsSubMenuLinks: React.ReactNode[] = [];
+      const highlightsProjectLinks: React.ReactNode[] = [];
       for (const { node } of data.allContentfulProjectType.edges) {
-        if (node.parentProject) {
-          continue;
-        }
-
-        projectsSubMenuLinks.push(
+        const currentSubMenuLink = (
           <SubMenuItem key={node.slug}>
             <MenuItemLink to={"/projecttype/" + node.slug} activeClassName="menu-link-active">
               {node.title}
             </MenuItemLink>
-          </SubMenuItem>,
+          </SubMenuItem>
         );
+
+        if (!node.parentProject) {
+          projectsSubMenuLinks.push(currentSubMenuLink);
+        } else {
+          highlightsProjectLinks.push(currentSubMenuLink);
+        }
       }
-
-      /*
-                <SubMenuItem>
-                  <MenuItemLink to="/Projects/water" activeClassName="menu-link-active">
-                    Access to Water
-                  </MenuItemLink>
-                </SubMenuItem>
-                <SubMenuItem>
-                  <MenuItemLink to="/Projects/povertyAlleviation" activeClassName="menu-link-active">
-                    Poverty Alleviation
-                  </MenuItemLink>
-                </SubMenuItem>
-                <SubMenuItem>
-                  <MenuItemLink to="/Projects/marriage" activeClassName="menu-link-active">
-                    Marriage
-                  </MenuItemLink>
-                </SubMenuItem>
-                <SubMenuItem>
-                  <MenuItemLink to="/Projects/education" activeClassName="menu-link-active">
-                    Education
-                  </MenuItemLink>
-                </SubMenuItem>
-                <SubMenuItem>
-                  <MenuItemLink to="/Projects/mealISB" activeClassName="menu-link-active">
-                    Meal ISB
-                  </MenuItemLink>
-                </SubMenuItem>*/
-
       return (
         <StyledNavbar id="nav-bar">
           <Menu>
@@ -178,17 +187,16 @@ const Navbar: React.FC = () => (
               </MenuItemLink>
             </MenuItem>
             <MenuItem>
-              <MenuItemLink to="">All Projects</MenuItemLink>
+              <NonLinedMenuItem>All Project Types</NonLinedMenuItem>
               <SubMenu>{projectsSubMenuLinks}</SubMenu>
             </MenuItem>
             <MenuItem>
-              <MenuItemLink to="/currentProjects" activeClassName="menu-link-active">
-                Current Projects
-              </MenuItemLink>
+              <NonLinedMenuItem>Highlights</NonLinedMenuItem>
+              <SubMenu>{highlightsProjectLinks}</SubMenu>
             </MenuItem>
             <MenuItem>
-              <MenuItemLink to="/highlights" activeClassName="menu-link-active">
-                Highlights
+              <MenuItemLink to="/contact-us" activeClassName="menu-link-active">
+                Contact Us
               </MenuItemLink>
             </MenuItem>
           </Menu>
