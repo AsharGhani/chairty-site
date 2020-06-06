@@ -55,9 +55,9 @@ const PageTemplate: React.SFC<PageTemplateProps> = ({ data }) => {
   let journeyHtml: string | undefined;
   if (projectEntry.layout && projectEntry.layout.toLowerCase() === "journey") {
     journeyHtml = projectEntry.journey && projectEntry.journey.childMarkdownRemark.html;
-    if (journeyHtml) {
+    /*if (journeyHtml) {
       journeyNode = JourneyNode.getJourneyNodeFromMarkdownHtml(journeyHtml);
-    }
+    }*/
   }
 
   return (
@@ -67,7 +67,7 @@ const PageTemplate: React.SFC<PageTemplateProps> = ({ data }) => {
           <ProjectTitleBreadCrump title={projectEntry.title} parent={projectEntry.parentProject}></ProjectTitleBreadCrump>
           {startDate && <StyledDate>{startDate.toLocaleDateString(undefined, dateOptions)}</StyledDate>}
           {/* eslint-disable-next-line react/no-danger */}
-          {!journeyNode && descriptionHtml && (
+          {!journeyHtml && descriptionHtml && (
             <StyledDescription>
               <div dangerouslySetInnerHTML={{ __html: descriptionHtml }} />
             </StyledDescription>

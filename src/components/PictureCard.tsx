@@ -20,20 +20,21 @@ const StyledPictureCardContainer = styled.div`
   width: 300px;
   align-items: center;
   box-shadow: 0 0px 12px rgba(0, 0, 0, 0.2);
-  padding: 16px;
+  padding: 0 16px 16px;
 `;
 
 const StyledImage = styled.img`
-  width: 300px;
-  height: 300px;
+  max-width: 300px;
+  max-height: 300px;
 `;
 
 const StyledTitle = styled.span`
   padding: 8px 0px;
-  font-size: ${dimensions.headingSizes.h2}rem;
+  font-size: ${dimensions.headingSizes.h3}rem;
   width: 100%;
   display: flex;
   justify-content: center;
+  text-align: center;
 `;
 
 const StyledDescription = styled.span`
@@ -71,7 +72,7 @@ const PictureCard: React.FC<PictureCardProps> = function(props: PictureCardProps
 
   return (
     <StyledPictureCardContainer className={linkClass} {...onClickAttribute}>
-      {props.imageSrc && <StyledImage src={props.imageSrc} title={props.imageTitle} width="300px" height="300px"></StyledImage>}
+      {props.imageSrc && <StyledImage src={props.imageSrc} title={props.imageTitle}></StyledImage>}
       <StyledTitle>{props.title}</StyledTitle>
       {props.description && <StyledDescription>{props.description}</StyledDescription>}
       {props.link && <StyledProjectLink>View</StyledProjectLink>}
