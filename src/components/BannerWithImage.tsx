@@ -10,10 +10,13 @@ const lg = `@media (min-width: ${getEmSize(breakpoints.lg)}em)`;
 const colorTheme = themeLight;
 
 interface StaticQueryProps {
-  file: {
-    childImageSharp: {
-      fluid: any;
-    };
+  allFile: {
+    nodes: {
+      childImageSharp: {
+        fluid: any;
+      };
+      name: string;
+    }[];
   };
 }
 
@@ -72,16 +75,22 @@ const BannerWithImage: React.FC = () => (
   <StaticQuery
     query={graphql`
       query BannerImage {
-        file(relativePath: { eq: "images/Grains.png" }) {
-          childImageSharp {
-            fluid(maxWidth: 1920) {
-              ...GatsbyImageSharpFluid
+        allFile(filter: { relativePath: { regex: "/images/banner/" } }) {
+          nodes {
+            childImageSharp {
+              fluid(maxWidth: 1920) {
+                ...GatsbyImageSharpFluid
+              }
             }
+            name
           }
         }
       }
     `}
     render={(data: StaticQueryProps) => {
+      let imageFluid: any | undefined;
+      let bannerText: string | undefined;
+
       try {
         const url = window.location.href.toLowerCase();
         if (
@@ -91,17 +100,33 @@ const BannerWithImage: React.FC = () => (
           url.indexOf("thar-drive") > 1 ||
           url.indexOf("badin-drive") > 1
         ) {
-          return (
-            <StyledBannerImageContainer>
-              <StyledBannerImage fluid={data.file.childImageSharp.fluid} alt="header image" style={{ width: "100%" }} />
-              <StyledBannerText>
-                <StyledBannerTextInner>RATION DRIVE</StyledBannerTextInner>
-              </StyledBannerText>
-            </StyledBannerImageContainer>
-          );
+          for (const node of data.allFile.nodes) {
+            if (node.name.toLowerCase() === "grains") {
+              imageFluid = node.childImageSharp.fluid;
+              bannerText = "RATION DRIVE";
+            }
+          }
+        } else if (url.indexOf("access-to-water") > 1 || url.indexOf("water-pump") > 1) {
+          for (const node of data.allFile.nodes) {
+            if (node.name.toLowerCase() === "water") {
+              imageFluid = node.childImageSharp.fluid;
+              bannerText = "ACCESS TO WATER";
+            }
+          }
         }
       } catch (e) {
         console.log(e);
+      }
+
+      if (imageFluid && bannerText) {
+        return (
+          <StyledBannerImageContainer>
+            <StyledBannerImage fluid={imageFluid} alt="header image" style={{ width: "100%" }} />
+            <StyledBannerText>
+              <StyledBannerTextInner>{bannerText}</StyledBannerTextInner>
+            </StyledBannerText>
+          </StyledBannerImageContainer>
+        );
       }
 
       return undefined;

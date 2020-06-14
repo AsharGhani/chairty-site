@@ -59,18 +59,22 @@
 
 .project-entry-journey .flex-with-wrap img,
 .project-entry-journey > div > img,
-.project-entry-journey > p > img {
+.project-entry-journey > p > img,
+.project-entry-journey > .gatsby-resp-iframe-wrapper {
   margin: 0 auto;
   display: block;
   max-height: 70vh;
   padding: 0px 16px;
 
+  padding-bottom: 0px !important;
+  min-height: 50vh;
   @media (min-width: 724px) {
     max-height: 60vh;
   }
 
   @media (min-width: 992px) {
     max-height: 40vh;
+    min-height: 40vh;
   }
 }
 
