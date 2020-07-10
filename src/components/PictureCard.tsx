@@ -38,6 +38,7 @@ const StyledTitle = styled.span`
 `;
 
 const StyledDescription = styled.span`
+  max-width: 100%;
   font-size: ${dimensions.headingSizes.h4};
   display: -webkit-box;
   overflow: hidden;

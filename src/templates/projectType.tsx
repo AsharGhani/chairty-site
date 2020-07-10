@@ -122,7 +122,7 @@ const PageTemplate: React.SFC<PageTemplateProps> = ({ data }) => {
           {/* eslint-disable-next-line react/no-danger */}
           {descriptionHtml && (
             <StyledDescription>
-              <div dangerouslySetInnerHTML={{ __html: descriptionHtml }} />
+              <div className="project-description" dangerouslySetInnerHTML={{ __html: descriptionHtml }} />
             </StyledDescription>
           )}
           {goToStartButton}

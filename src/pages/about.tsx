@@ -65,14 +65,14 @@ const AboutPage: React.FC = () => (
       <Container>
         <h1>Ibaad-ur-Rahman Foundation</h1>
         <StyledDescription>
-          This is not the work of an individual. It is the work of Allah who put in the hearts of a group of like-minded people to come
-          together to serve the underprivileged while at the same time improve their own life in the hereafter
+          This is not the work of an individual, rather Allah gave us the <i>Tawfeeq</i> (Ability and Opportunity) and guided our hearts to
+          serve the underprivileged. Our Aim is not only to help our brothers and siters in need but also to please our Allah Almighty.
         </StyledDescription>
 
         <h3>Who is Ibaad-ur-Rahman</h3>
         <StyledDescription>
-          Here is the mystery solved: Ibaad ur Rahmaan means Servants of Allah (لل‍َّٰه کے بندے). They are all those brothers and sisters
-          that have come together and joined this group to help run this show. So when we put up a plaque on a handpump and put the writing
+          Ibaad ur Rahmaan means Servants of The Most Merciful (Allah) (In Urdu: لل‍َّٰه کے بندے). They are all those brothers and sisters
+          who have come together and joined this group to help run this show. So when we put up a plaque on a handpump and put the writing
           Ibaad ur Rahmaan, it is in short every member's name that represents this group.
         </StyledDescription>
       </Container>
